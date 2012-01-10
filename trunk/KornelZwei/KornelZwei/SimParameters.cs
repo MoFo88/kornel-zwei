@@ -49,7 +49,7 @@ namespace KornelZwei
         {
             Const.PB98_PROB = Int32.Parse(tbPb98Prob.Text);
             Const.PB95_PROB = Int32.Parse(tbPb95Prob.Text);
-            Const.ON_PROB = Int32.Parse(tbONProb.Text);
+            Const.ON_PROB   = Int32.Parse(tbONProb.Text);
 
             Const.QTY_10_PROB = Int32.Parse(tb10Qty.Text);
             Const.QTY_20_PROB = Int32.Parse(tb20Qty.Text);
@@ -61,12 +61,9 @@ namespace KornelZwei
 
             Const.PB98_PROFIT = Double.Parse(tbPb98Profit.Text);
             Const.PB95_PROFIT = Double.Parse(tbPb95Profit.Text);
-            Const.ON_PROFIT = Double.Parse(tbONProfit.Text);
+            Const.ON_PROFIT   = Double.Parse(tbONProfit.Text);
 
             Const.CAR_FREQ = Int32.Parse(tbCarFreq.Text);
-            MessageBox.Show("Paramatry zaktualizowano");
-            //Const.DISTRIBUTOR_QTY = Int32.Parse(tbDeviceQty.Text);
-            //Const.QUEUE_SIZE = Int32.Parse(tbQueueSize.Text);
         }
 
         private void btnUpdateParam_Click(object sender, EventArgs e)
@@ -74,6 +71,7 @@ namespace KornelZwei
             try
             {
                 UpdateParameters();
+                MessageBox.Show("Paramatry zaktualizowano");
             }
             catch (Exception ex)
             {
@@ -86,11 +84,11 @@ namespace KornelZwei
             try
             {
                 UpdateParameters();
-AddSocket();
-                ResetScheduler();
+                AddSocket();
+                scheduler.Reset();
                 scheduler.form = new SimForm(scheduler);
                 RefreshForm();
-                
+
                 scheduler.form.Show();
             }
             catch (Exception ex)
@@ -139,25 +137,26 @@ AddSocket();
             }
         }
 
-        public void ResetScheduler()
-        {
-            Device.lastId = 0;
-            Queue.lastId = 0;
-            Socket.lastId = 0;
+        //public void ResetScheduler()
+        //{
+        //    Device.lastId = 0;
+        //    Queue.lastId = 0;
+        //    Socket.lastId = 0;
 
-            scheduler.timestamp = 0;
-            scheduler.queueSize = new List<QueueSize>();
-            scheduler.killedJobsList = new List<Job>();
-            scheduler.jobList = new List<Job>();
-            scheduler.eventList = new List<Event>();
-            //AddSocket();
+        //    scheduler.timestamp = 0;
+        //    scheduler.queueSize = new List<QueueSize>();
+        //    scheduler.killedJobsList = new List<Job>();
+        //    scheduler.jobList = new List<Job>();
+        //    scheduler.eventList = new List<Event>();
+        //    Job.ID = 0;
+        //    //AddSocket();
 
-            scheduler.socket.queue.JobList = new List<Job>();
-            foreach (Device d in scheduler.socket.deviceList)
-            {
-                d.CurrentJob = null;
-            }
-        }
+        //    scheduler.socket.queue.JobList = new List<Job>();
+        //    foreach (Device d in scheduler.socket.deviceList)
+        //    {
+        //        d.CurrentJob = null;
+        //    }
+        //}
 
         public void RefreshForm()
         {

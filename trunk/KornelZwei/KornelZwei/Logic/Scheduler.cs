@@ -11,25 +11,26 @@ namespace KornelZwei.Logic
     public class Scheduler
     {
         public int timestamp;
-         
+
         public List<Job> jobList;
         public Socket socket;
         public List<Event> eventList;
         public List<Job> killedJobsList;
 
-        public bool SystemEmpty 
-        { 
+        public bool SystemEmpty
+        {
             get
             {
-                if (eventList.Count > 0) return false;
+                if (eventList.Count > 0)
+                    return false;
                 return true;
-            } 
+            }
         }
 
         //
         //for stats
         public List<QueueSize> queueSize = new List<QueueSize>();
-        
+
         public SimForm form;
 
         public void AddEvent(Event ev)
@@ -41,8 +42,9 @@ namespace KornelZwei.Logic
         {
             DiscreteUniformDistribution uniformDistr = new DiscreteUniformDistribution(0, 60);
             int nextRandom = uniformDistr.NextInt32();
- 
-            if ( nextRandom < prob ) return true;
+
+            if (nextRandom < prob)
+                return true;
             return false;
         }
 
@@ -60,30 +62,12 @@ namespace KornelZwei.Logic
         {
             if (CheckIfGenerateJob(Const.CAR_FREQ))
             {
-                Job job = jobList.Create( socket, this.timestamp, this);
+                Job job = jobList.Create(socket, this.timestamp, this);
 
                 //
                 //tell
                 form.Notify(timestamp + ". " + "Zadanie dodane: " + job.ToString());
             }
-
-            //if (CheckIfGenerateJob(Const.JOB_UNIFORM_GENERATE_PROBABILITY))
-            //{
-            //    Job job = jobList.Create(new UniformDistr(Const.UNIFORM_MIN, Const.UNIFORM_MAX), socketList, this.timestamp, this);
-
-            //    //
-            //    //tell
-            //    form.Notify(timestamp + ". " + "Zadanie dodane: " + job.ToString());
-            //}
-
-            //if (CheckIfGenerateJob(Const.JOB_EXPONENTIAL_GENERATE_PROBABILITY))
-            //{
-            //    Job job = jobList.Create(new ExponentialDistribution(Const.EXPONENTIAL_RATE), socketList, this.timestamp, this);
-
-            //    //
-            //    //tell
-            //    form.Notify(timestamp + ". " + "Zadanie dodane: " + job.ToString());
-            //}
         }
 
         public void MakeStep()
@@ -108,8 +92,8 @@ namespace KornelZwei.Logic
             //
             //remember queue size in timestamp
 
-                Queue q = socket.queue;
-                queueSize.Add(new QueueSize(timestamp, q, q.Count));
+            Queue q = socket.queue;
+            queueSize.Add(new QueueSize(timestamp, q, q.Count));
 
         }
 
@@ -125,14 +109,14 @@ namespace KornelZwei.Logic
             {
                 //next step
                 timestamp++;
-                form.Notify("\n==" + this.timestamp + "==\n",1);
+                form.Notify("\n==" + this.timestamp + "==\n", 1);
                 JobGeneration();
 
                 //
                 //remember queue size in timestamp
 
-                    Queue q = socket.queue;
-                    queueSize.Add(new QueueSize(timestamp, q, q.Count));
+                Queue q = socket.queue;
+                queueSize.Add(new QueueSize(timestamp, q, q.Count));
 
             }
         }
@@ -148,20 +132,21 @@ namespace KornelZwei.Logic
                 JobGenerationEvent ev = (JobGenerationEvent)myEvent;
                 Job job = ev.job;
 
-                Socket s = socket;//List.GetFirstFreeSocket();
+                Socket s = socket;
 
                 bool added = false;
-                if (s != null)  added = s.queue.Put(job);
+                if (s != null)
+                    added = s.queue.Put(job);
 
                 if (added)
                 {
                     //
                     //tell
-                    tell += "AKCJA: zad " + job.ToString() + " -> " + s.queue.ToString()+"\n ";
+                    tell += "AKCJA: zad " + job.ToString() + " -> " + s.queue.ToString() + "\n ";
                 }
                 else
                 {
-                    jobList.Kill(killedJobsList, job );
+                    jobList.Kill(killedJobsList, job);
 
                     //
                     //tell
@@ -180,11 +165,11 @@ namespace KornelZwei.Logic
 
                 PutToQueueEvent ev = (PutToQueueEvent)myEvent;
                 Queue queue = ev.queue;
-                Socket s = socket;//List.SingleOrDefault( s => s.queue == queue );
+                Socket s = socket;
 
                 //
                 //dodaj zadanie na wolną maszynę
-                
+
                 //
                 //sprawdz, czy wolna maszyna
                 Device device = s.GetFirstFreeDevice();
@@ -202,11 +187,11 @@ namespace KornelZwei.Logic
             }
             else if (myEvent is DeviceFinishedEvent)
             {
-                
+
                 //
                 //tell
-                String tell ="ZDARZENIE: maszyna ukończyła pracę\n";
-                
+                String tell = "ZDARZENIE: maszyna ukończyła pracę\n";
+
                 DeviceFinishedEvent ev = (DeviceFinishedEvent)myEvent;
                 Device device = ev.device;
                 Job job = ev.job;
@@ -215,54 +200,32 @@ namespace KornelZwei.Logic
 
                 //
                 //tell
-                tell += "AKCJA: zad " + job.ToString() + " ukonczone na " + device.ToString()  + "\n";
+                tell += "AKCJA: zad " + job.ToString() + " ukonczone na " + device.ToString() + "\n";
 
-                
+
                 //
                 //spróbój dodac zadanie do kolejki
 
                 //pobierz socket maszyny
-                Socket s = socket;//List.SingleOrDefault( x => x.deviceList.Contains(device));
-                
+                Socket s = socket;
+
                 //pobierz nastepny socket
-                
+
                 //
                 //jesli ostatni socket, wyrzuc
                 //if (s.nextSockets == null || s.nextSockets.Count == 0)
                 //{
-                    job.Stop = this.timestamp;
-                    device.RemoveJob(timestamp, s);
+                job.Stop = this.timestamp;
+                device.RemoveJob(timestamp, s);
 
-                    //
-                    //to excel
-                    //form.AddToExcelJobStatistic(((DeviceFinishedEvent)myEvent).job);
-
-
-                    //
-                    //tell
-                    tell += "AKCJA: Zad " + job.ToString() + " ukonczone całkowicie\n";
-
-                //}
                 //
-                // mamy nastepny socket, sprobój dodac zadanie do kolejki
-                //else
-                //{
-                //    Socket nextSocket = socket.nextSockets.GetNextFreeSocket();
+                //to excel
+                //form.AddToExcelJobStatistic(((DeviceFinishedEvent)myEvent).job);
 
-                //    if (nextSocket != null)
-                //    {
-                //        bool added = nextSocket.queue.Put(job);
 
-                //        if (added)
-                //        {
-                //            device.RemoveJob(timestamp, socket);
-                //            //
-                //            //tell
-                //            tell += "AKCJA: Zadanie dodane do kolejki: " + job.ToString() + ", " + nextSocket.queue.ToString() + "\n";
-                //        }
-                //    }
-                //}
-
+                //
+                //tell
+                tell += "AKCJA: Zad " + job.ToString() + " ukonczone całkowicie\n";
                 form.Notify(tell);
             }
             else if (myEvent is DeviceEmptyEvent)
@@ -292,31 +255,7 @@ namespace KornelZwei.Logic
 
                 GetFromQueueEvent ev = (GetFromQueueEvent)myEvent;
                 Queue queue = ev.queue;
-                Socket s = socket;//List.SingleOrDefault(s => s.queue == queue);
-
-                //
-                //sprawdz, czy na poprzednich soketach nie ma maszyn z czekającymi zadaniami
-
-                //List<Socket> prevSocketList = s.prevSockets;
-                //Device prevBusyDev = prevSocketList.GetBusyDevice();
-                
-
-                ////
-                ////wrzuć na kolejkę
-                //if (prevBusyDev != null)
-                //{
-                //    Job job = prevBusyDev.CurrentJob;
-                //    bool t = queue.Put(job);
-
-                //    if (t)
-                //    {
-                //        prevBusyDev.RemoveJob(timestamp, socketList.GetSocketWithDevice(prevBusyDev));
-                //    }
-
-                //    //
-                //    //tell
-                //    tell += "AKCJA: zad" + job.ToString() + " -> " + queue.ToString() + "\n";
-                //}
+                Socket s = socket;
 
                 form.Notify(tell);
             }
@@ -331,6 +270,27 @@ namespace KornelZwei.Logic
             eventList.Add(e);
         }
 
+        public void Reset()
+        {
+            Device.lastId = 0;
+            Queue.lastId = 0;
+            Socket.lastId = 0;
+
+            timestamp = 0;
+            queueSize = new List<QueueSize>();
+            killedJobsList = new List<Job>();
+            jobList = new List<Job>();
+            eventList = new List<Event>();
+            Job.ID = 0;
+            //AddSocket();
+
+            socket.queue.JobList = new List<Job>();
+            foreach (Device d in socket.deviceList)
+            {
+                d.CurrentJob = null;
+            }
+        }
+
         #region statistics
 
         //
@@ -339,27 +299,31 @@ namespace KornelZwei.Logic
         {
             int sum = 0;
             int count = 0;
-            
+
             //get jobs on device
             foreach (Job job in jobList)
             {
                 MachineTime mt = job.GetMachineTimeForDevice(dev);
                 int start, stop;
 
-                if (mt.start < 0) continue;
+                if (mt.start < 0)
+                    continue;
                 else
                 {
                     count++;
                     start = mt.start;
                 }
-                
-                if (mt.stop > 0) stop = mt.stop;
-                else stop = timestamp;
+
+                if (mt.stop > 0)
+                    stop = mt.stop;
+                else
+                    stop = timestamp;
                 int worktime = stop - start;
                 sum += worktime;
             }
-            if (count == 0) return 0;
-            return (double)sum/count;
+            if (count == 0)
+                return 0;
+            return (double)sum / count;
         }
 
         public double AvgWorkTimeOnDevice(Device dev)
@@ -374,20 +338,25 @@ namespace KornelZwei.Logic
 
                 int start, stop;
 
-                if (mt.start < 0) continue;
+                if (mt.start < 0)
+                    continue;
                 else
                 {
                     count++;
                     start = mt.start;
                 }
 
-                if (mt.stop > 0) stop = mt.stop;
-                else stop = timestamp;
+                if (mt.stop > 0)
+                    stop = mt.stop;
+                else
+                    stop = timestamp;
                 int worktime = stop - start;
-                if (worktime > mt.sec) worktime = mt.sec;
+                if (worktime > mt.sec)
+                    worktime = mt.sec;
                 sum += worktime;
             }
-            if (count == 0) return 0;
+            if (count == 0)
+                return 0;
             return (double)sum / count;
         }
 
@@ -402,17 +371,21 @@ namespace KornelZwei.Logic
                 MachineTime mt = job.GetMachineTimeForDevice(dev);
                 int start, stop;
 
-                if (mt.start < 0) continue;
+                if (mt.start < 0)
+                    continue;
                 else
                 {
                     count++;
                     start = mt.start;
                 }
 
-                if (mt.stop > 0) stop = mt.stop;
-                else stop = timestamp;
+                if (mt.stop > 0)
+                    stop = mt.stop;
+                else
+                    stop = timestamp;
                 int worktime = stop - start;
-                if (worktime > mt.sec) worktime = mt.sec;
+                if (worktime > mt.sec)
+                    worktime = mt.sec;
                 time += worktime;
             }
 
@@ -430,15 +403,18 @@ namespace KornelZwei.Logic
                 MachineTime mt = job.GetMachineTimeForDevice(dev);
                 int start, stop;
 
-                if (mt.start < 0) continue;
+                if (mt.start < 0)
+                    continue;
                 else
                 {
                     count++;
                     start = mt.start;
                 }
 
-                if (mt.stop > 0) stop = mt.stop;
-                else stop = timestamp;
+                if (mt.stop > 0)
+                    stop = mt.stop;
+                else
+                    stop = timestamp;
 
                 int worktime = stop - start;
 
@@ -466,7 +442,7 @@ namespace KornelZwei.Logic
             return jobList
                 .Where
                 (
-                    j => 
+                    j =>
                     j.GetMachineTimeForDevice(dev).start >= 0
                 )
                 .Count();
@@ -508,12 +484,13 @@ namespace KornelZwei.Logic
                         stop = qt.stop;
                     }
 
-                    count ++;
+                    count++;
                     avg += stop - start;
                 }
             }
 
-            if (count == 0) return 0;
+            if (count == 0)
+                return 0;
             return avg /= count;
         }
 
@@ -545,7 +522,8 @@ namespace KornelZwei.Logic
                 }
             }
 
-            if (count == 0) return 0;
+            if (count == 0)
+                return 0;
             return sum;
         }
 
@@ -586,18 +564,20 @@ namespace KornelZwei.Logic
         public int maxQueueCount(Queue queue)
         {
             List<QueueSize> queueSizes = queueSize.Where(x => x.Queue == queue).ToList();
-            if (queueSizes.Count == 0) return 0;
+            if (queueSizes.Count == 0)
+                return 0;
             return queueSizes.Max(qs => qs.Size);
         }
 
         public double avgQueueCount(Queue queue)
         {
             List<QueueSize> queueSizes = queueSize.Where(x => x.Queue == queue).ToList();
-            if (queueSizes.Count == 0) return 0;
+            if (queueSizes.Count == 0)
+                return 0;
 
             int sumQueueCount = 0;
 
-            for (int i = 1; i < timestamp; ++i )
+            for (int i = 1; i < timestamp; ++i)
             {
                 sumQueueCount += queueSizes.SingleOrDefault(qs => qs.Timestamp == i).Size;
             }
@@ -611,36 +591,41 @@ namespace KornelZwei.Logic
         public int MaxTimeInSystem()
         {
             List<Job> x = jobList.Where(j => j.Start >= 0 && j.Stop >= 0).ToList();
-            if (x.Count <= 0) return 0;
-            return    x.Max(j => j.TimeInSystem);     
+            if (x.Count <= 0)
+                return 0;
+            return x.Max(j => j.TimeInSystem);
         }
 
         public int MinTimeInSystem()
         {
             List<Job> x = jobList.Where(j => j.Start >= 0 && j.Stop >= 0).ToList();
-            if (x.Count <= 0) return 0;
-            return x.Min(j => j.TimeInSystem);   
+            if (x.Count <= 0)
+                return 0;
+            return x.Min(j => j.TimeInSystem);
         }
 
         public double AvgTimeInSystem()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 0) return 0;
+            if (x.Count <= 0)
+                return 0;
 
-            return x.Average(j => j.TimeInSystem); 
+            return x.Average(j => j.TimeInSystem);
         }
 
         public int MaxWorkTime()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 0) return 0;
-            return x.Max(j => j.WorkedTime());   
+            if (x.Count <= 0)
+                return 0;
+            return x.Max(j => j.WorkedTime());
         }
 
         public int MinWorkTime()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 0) return 0;
+            if (x.Count <= 0)
+                return 0;
             return x.Min(j => j.WorkedTime());
         }
 
@@ -651,7 +636,8 @@ namespace KornelZwei.Logic
             int sum = 0;
             int count = 0;
 
-            if (x.Count == 0) return 0;
+            if (x.Count == 0)
+                return 0;
 
             foreach (Job j in x)
             {
@@ -665,7 +651,8 @@ namespace KornelZwei.Logic
         public double StdVarTimeInSystem()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 1) return 0;
+            if (x.Count <= 1)
+                return 0;
 
             return x.Select(j => (double)j.TimeInSystem).CalculateStdDev();
         }
@@ -673,7 +660,8 @@ namespace KornelZwei.Logic
         public double StdVarWorkTime()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 1) return 0;
+            if (x.Count <= 1)
+                return 0;
 
             return x.Select(j => (double)j.WorkedTime()).CalculateStdDev();
         }
@@ -681,14 +669,16 @@ namespace KornelZwei.Logic
         public int MaxWastedTime()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 0) return 0;
-            return x.Max(j => j.WastedTime());     
+            if (x.Count <= 0)
+                return 0;
+            return x.Max(j => j.WastedTime());
         }
 
         public int MinWastedTime()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 0) return 0;
+            if (x.Count <= 0)
+                return 0;
             return x.Min(j => j.WastedTime());
         }
 
@@ -699,7 +689,8 @@ namespace KornelZwei.Logic
             int sum = 0;
             int count = 0;
 
-            if (x.Count == 0) return 0;
+            if (x.Count == 0)
+                return 0;
 
             foreach (Job j in x)
             {
@@ -713,14 +704,58 @@ namespace KornelZwei.Logic
         public double StdVarWastedTime()
         {
             List<Job> x = jobList.Where(j => j.IsFinished).ToList();
-            if (x.Count <= 1) return 0;
+            if (x.Count <= 1)
+                return 0;
 
             return x.Select(j => (double)j.WastedTime()).CalculateStdDev();
         }
 
+        public int SumForFuelType(FuelType ft)
+        {
+            List<Job> x = jobList.Where(j => j.IsFinished && j.fuelType == ft).ToList();
+            if (x.Count <= 0)
+                return 0;
+            return x.Count;
+        }
+
+        Dictionary<FuelType, double> profitDict = new Dictionary<FuelType, double>
+        {
+            {FuelType.PB98, Const.PB98_PROFIT},
+            {FuelType.PB95, Const.PB95_PROFIT},
+            {FuelType.ON, Const.ON_PROFIT}
+        };
+
+        public int GetFuelQty(FuelType ft)
+        {
+            List<Job> x = jobList.Where(j => j.IsFinished && j.fuelType == ft).ToList();
+            if (x.Count <= 0)
+                return 0;
+            int fuelQty = x.Sum(j => j.fuelQty);
+            if (fuelQty <= 0)
+                return 0;
+            return fuelQty;
+        }
+
+        public double GetProfitForFuelType(FuelType ft)
+        {
+            int fuelQty = GetFuelQty(ft);
+            double fuelProfit = profitDict[ft];
+            if (fuelQty * fuelProfit <= 0)
+                return 0;
+
+            return fuelQty * fuelProfit;
+
+        }
+
+        public double GetOverallProfit()
+        {
+            double sum = 0.0;
+            foreach (FuelType ft in profitDict.Keys)
+                sum += GetProfitForFuelType(ft);
+
+            return sum;
+        }
+
         #endregion statistics
-
-
-        
     }
 }
