@@ -12,24 +12,74 @@ namespace KornelZwei.Logic
     public class Job
     {
         private static int ID = 0;
-        
-        public List<MachineTime> DeviceTimeList {get; set;}
-        public List<QueueTime> QueueTimeList { get; set; }
-        public List<Device> VisitedDevices { get; set; }
 
-        public int Id { get; set; }
-        public String Name { get; set; }
-        public String ToStr { get { return Id + "[" + Start + "], " ; } }
-        public int Start {get; set;}
-        public int Stop { get; set; }
+        public List<MachineTime> DeviceTimeList
+        {
+            get;
+            set;
+        }
+        public List<QueueTime> QueueTimeList
+        {
+            get;
+            set;
+        }
+        public List<Device> VisitedDevices
+        {
+            get;
+            set;
+        }
+
+        public int Id
+        {
+            get;
+            set;
+        }
+        public String Name
+        {
+            get;
+            set;
+        }
+        public String ToStr
+        {
+            get
+            {
+                return Id + "[" + Start + "], ";
+            }
+        }
+        public int Start
+        {
+            get;
+            set;
+        }
+        public int Stop
+        {
+            get;
+            set;
+        }
         //public IDistribution Distribution { get; set; }
-        public bool IsFinished { get { if (Stop > 0) return true; return false; } }
-        public int TimeInSystem { get { return Stop - Start; } }
+        public bool IsFinished
+        {
+            get
+            {
+                if (Stop > 0)
+                    return true;
+                return false;
+            }
+        }
+        public int TimeInSystem
+        {
+            get
+            {
+                return Stop - Start;
+            }
+        }
         public Color color;
+        public FuelType fuelType;
+        public int fuelQty;
 
         public override string ToString()
         {
-            return  ToStr;
+            return ToStr;
         }
 
         public int WorkedTime()
@@ -55,12 +105,13 @@ namespace KornelZwei.Logic
             int count = VisitedDevices.Count();
             int sum = WorkedTime();
 
-            if (count == 0) return 0;
+            if (count == 0)
+                return 0;
             return (double)sum / (double)count;
-            
+
         }
 
-        public int  MaxWorkTime()
+        public int MaxWorkTime()
         {
             int max = -1;
             foreach (Device dev in VisitedDevices)
@@ -73,7 +124,8 @@ namespace KornelZwei.Logic
 
         public int MinWorkTime()
         {
-            if (VisitedDevices.Count == 0) return 0;
+            if (VisitedDevices.Count == 0)
+                return 0;
             int min = GetMachineTimeForDevice(VisitedDevices[0]).sec;
             foreach (Device dev in VisitedDevices)
             {
@@ -86,7 +138,8 @@ namespace KornelZwei.Logic
         public double StdVarWorkTime()
         {
             List<double> result = VisitedDevices.Select(v => (double)GetMachineTimeForDevice(v).sec).ToList();
-            if (result.Count <= 1) return 0;
+            if (result.Count <= 1)
+                return 0;
             return result.CalculateStdDev();
         }
 
@@ -102,7 +155,8 @@ namespace KornelZwei.Logic
 
         internal void AddVisitedDevice(Device device)
         {
-            if (!VisitedDevices.Contains(device)) VisitedDevices.Add(device);
+            if (!VisitedDevices.Contains(device))
+                VisitedDevices.Add(device);
         }
         /// <summary>
         /// constructor - initialize job
@@ -121,33 +175,73 @@ namespace KornelZwei.Logic
             QueueTimeList = new List<QueueTime>();
             VisitedDevices = new List<Device>();
 
-            color = Color.FromArgb(((Id+10) * 20) % 255, (Id * 30) % 255, (Id * 40) % 255);
+            color = Color.FromArgb(((Id + 10) * 20) % 255, (Id * 30) % 255, (Id * 40) % 255);
 
             //foreach (Socket socket in globalSocketList)
             //{
 
+            Dictionary<int, int> timeDict = new Dictionary<int, int>
+            {
+                {10, Const.QTY_10_TIME},
+                {20, Const.QTY_20_TIME},
+                {40, Const.QTY_40_TIME}
+            };
+
             //losowanieczasu tankowania
-                //initialize device time list
-                foreach (Device device in socket.deviceList)
-                {
-                    MachineTime mt = new MachineTime();
-                    mt.device = device;
-                    mt.sec = 20;
+            fuelQty = DrawFuelQty();
+            fuelType = DrawFuelType();
 
-                    DeviceTimeList.Add(mt);
-                }
+            //initialize device time list
+            foreach (Device device in socket.deviceList)
+            {
+                MachineTime mt = new MachineTime();
+                mt.device = device;
+                mt.sec = timeDict[fuelQty];
 
-                //initialize queue time list
-                Queue queue = socket.queue;
+                DeviceTimeList.Add(mt);
+            }
 
-                QueueTime qt = new QueueTime();
-                qt.queue = queue;
+            //initialize queue time list
+            Queue queue = socket.queue;
 
-                QueueTimeList.Add(qt);
+            QueueTime qt = new QueueTime();
+            qt.queue = queue;
+
+            QueueTimeList.Add(qt);
             //}
 
             Start = time;
-            Stop = -1;  
+            Stop = -1;
+        }
+
+        private FuelType DrawFuelType()
+        {
+            int probSum = Const.PB98_PROB + Const.PB95_PROB + Const.ON_PROB;
+
+            Random random = new Random();
+            int rand = random.Next(0, probSum);
+
+            if (rand <= Const.PB98_PROB)
+                return FuelType.PB98;
+            else if (rand > Const.PB98_PROB && rand <= Const.PB98_PROB + Const.PB95_PROB)
+                return FuelType.Pb95;
+            else //if (rand > Const.PB98_PROB + Const.PB95_PROB && rand <= probSum)
+                return FuelType.ON;
+        }
+
+        private int DrawFuelQty()
+        {
+            int probSum = Const.QTY_10_PROB + Const.QTY_20_PROB + Const.QTY_40_PROB;
+
+            Random random = new Random();
+            int rand = random.Next(0, probSum);
+
+            if (rand <= Const.QTY_10_PROB)
+                return 10;
+            else if (rand > Const.QTY_10_PROB && rand <= Const.QTY_10_PROB + Const.QTY_20_PROB)
+                return 20;
+            else //if (rand > Const.PB98_PROB + Const.PB95_PROB && rand <= probSum)
+                return 40;
         }
     }
 }

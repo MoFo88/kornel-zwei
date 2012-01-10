@@ -64,6 +64,7 @@ namespace KornelZwei
             Const.ON_PROFIT = Double.Parse(tbONProfit.Text);
 
             Const.CAR_FREQ = Int32.Parse(tbCarFreq.Text);
+            MessageBox.Show("Paramatry zaktualizowano");
             //Const.DISTRIBUTOR_QTY = Int32.Parse(tbDeviceQty.Text);
             //Const.QUEUE_SIZE = Int32.Parse(tbQueueSize.Text);
         }
@@ -105,8 +106,8 @@ AddSocket();
                 //ResetScheduler();
 
                 int queueSize = Int32.Parse(tbQueueSize.Text);
-                int X = 100;
-                int Y = 100;
+                int X = 10;
+                int Y = 10;
                 int DevNr = Int32.Parse(tbDeviceQty.Text);
                 bool isFirst = true;
 
@@ -131,8 +132,6 @@ AddSocket();
                 scheduler.socket = socket;
 
                 RefreshForm();
-
-                MessageBox.Show("Socket " + socket.ToString() + " added");
             }
             catch (Exception ex)
             {

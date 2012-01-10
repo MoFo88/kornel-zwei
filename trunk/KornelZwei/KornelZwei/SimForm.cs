@@ -82,7 +82,7 @@ namespace KornelZwei
             InitializeDgv(dgv, jobList);
         }
 
-        public void Notify(String message, int i = 0)
+        public void Notify(String message, int i = 1)
         {
             if (i == 1)
                 rtbLog.Text = message + "\n" + rtbLog.Text;
@@ -96,7 +96,7 @@ namespace KornelZwei
             {
                 btnStop.Enabled = false;
                 this.panelSockets.Controls.Clear();
-                timer1.Interval = 200;
+                timer1.Interval = Const.TIME_INTERVAL;
                 //socketControl = new SocketControl();
 
                 //
