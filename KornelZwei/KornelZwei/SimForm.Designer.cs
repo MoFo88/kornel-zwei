@@ -38,9 +38,9 @@
             // 
             // rtbLog
             // 
-            this.rtbLog.Location = new System.Drawing.Point(12, 366);
+            this.rtbLog.Location = new System.Drawing.Point(363, 12);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(729, 96);
+            this.rtbLog.Size = new System.Drawing.Size(379, 348);
             this.rtbLog.TabIndex = 0;
             this.rtbLog.Text = "";
             // 
@@ -48,7 +48,7 @@
             // 
             this.panelSockets.Location = new System.Drawing.Point(12, 12);
             this.panelSockets.Name = "panelSockets";
-            this.panelSockets.Size = new System.Drawing.Size(729, 348);
+            this.panelSockets.Size = new System.Drawing.Size(345, 348);
             this.panelSockets.TabIndex = 1;
             // 
             // btnStart
@@ -79,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 504);
+            this.ClientSize = new System.Drawing.Size(754, 504);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panelSockets);

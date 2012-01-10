@@ -46,8 +46,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.tb10QtyTime = new System.Windows.Forms.TextBox();
             this.tb10Qty = new System.Windows.Forms.TextBox();
             this.tb40QtyTime = new System.Windows.Forms.TextBox();
@@ -55,7 +53,6 @@
             this.tb20QtyTime = new System.Windows.Forms.TextBox();
             this.tb20Qty = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -89,6 +86,9 @@
             this.label45 = new System.Windows.Forms.Label();
             this.btnUpdateParam = new System.Windows.Forms.Button();
             this.btnShowForm = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -278,26 +278,6 @@
             this.label32.TabIndex = 9;
             this.label32.Text = "Czas tank.";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(25, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "10 l";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(25, 67);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "20 l";
-            // 
             // tb10QtyTime
             // 
             this.tb10QtyTime.Location = new System.Drawing.Point(137, 38);
@@ -349,15 +329,6 @@
             this.label35.TabIndex = 4;
             this.label35.Text = "min";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(25, 93);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(24, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "40 l";
-            // 
             // label34
             // 
             this.label34.AutoSize = true;
@@ -406,11 +377,11 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(17, 22);
+            this.label18.Location = new System.Drawing.Point(21, 22);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(40, 13);
+            this.label18.Size = new System.Drawing.Size(29, 13);
             this.label18.TabIndex = 5;
-            this.label18.Text = "Rodzaj";
+            this.label18.Text = "Ilość";
             // 
             // label19
             // 
@@ -671,6 +642,35 @@
             this.btnShowForm.UseVisualStyleBackColor = true;
             this.btnShowForm.Click += new System.EventHandler(this.btnShowForm_Click);
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(25, 93);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(24, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "40 l";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(25, 67);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(24, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "20 l";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(25, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "10 l";
+            // 
             // SimParameters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,8 +722,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tb10QtyTime;
         private System.Windows.Forms.TextBox tb10Qty;
         private System.Windows.Forms.TextBox tb40QtyTime;
@@ -731,7 +729,6 @@
         private System.Windows.Forms.TextBox tb20QtyTime;
         private System.Windows.Forms.TextBox tb20Qty;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label33;
@@ -765,6 +762,9 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Button btnUpdateParam;
         private System.Windows.Forms.Button btnShowForm;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label14;
     }
 }
 

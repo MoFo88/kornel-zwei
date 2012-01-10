@@ -56,7 +56,7 @@ namespace KornelZwei
                 d.ScrollBars = ScrollBars.None;
                 d.Height = Const.ROW_HEIGHT;
                 d.Width = Const.ROW_WIDTH;
-                d.Location = new Point(Const.ROW_WIDTH + 5, 2+count * (Const.ROW_HEIGHT+30) + 20);
+                d.Location = new Point(Const.ROW_WIDTH + 20, 2+count * (Const.ROW_HEIGHT+30) + 20);
                 d.Tag = dev;
                 
                 DeviceList.Add(d);

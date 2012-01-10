@@ -18,9 +18,9 @@ namespace KornelZwei.Logic
         public static int QTY_40_PROB = 40;
 
         //czas tankowania
-        public static int QTY_10_TIME = 2;
-        public static int QTY_20_TIME = 3;
-        public static int QTY_40_TIME = 5;
+        public static int QTY_10_TIME = 4;
+        public static int QTY_20_TIME = 6;
+        public static int QTY_40_TIME = 10;
 
         //zysk na litrze
         public static double PB98_PROFIT = 0.5;
@@ -33,13 +33,13 @@ namespace KornelZwei.Logic
         public static int QUEUE_SIZE = 2;
 
         //Forma symulacji
-        public static int TIME_INTERVAL = 1000;
+        public static int TIME_INTERVAL = 10;
 
         public static int ROW_HEIGHT = 30;
         public static int ROW_WIDTH = 80;
 
         public static int CONTROL_SOCKET_HEIGHT = 180;
-        public static int CONTROL_SOCKET_WIDTH = 170;
+        public static int CONTROL_SOCKET_WIDTH = 325;
 
 
         public static int ROW_HEIGHT_QUEUE = 25;

@@ -39,7 +39,7 @@ namespace KornelZwei.Logic
 
         public bool CheckIfGenerateJob(int prob)
         {
-            DiscreteUniformDistribution uniformDistr = new DiscreteUniformDistribution(0, 100);
+            DiscreteUniformDistribution uniformDistr = new DiscreteUniformDistribution(0, 60);
             int nextRandom = uniformDistr.NextInt32();
  
             if ( nextRandom < prob ) return true;
