@@ -8,7 +8,7 @@ namespace KornelZwei.Logic
     public enum FuelType
     {
         PB98 = 0,
-        Pb95 = 1,
+        PB95 = 1,
         ON = 2
     }
 }

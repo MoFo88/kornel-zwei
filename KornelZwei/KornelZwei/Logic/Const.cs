@@ -33,13 +33,14 @@ namespace KornelZwei.Logic
         public static int QUEUE_SIZE = 2;
 
         //Forma symulacji
-        public static int TIME_INTERVAL = 10;
+        public static int TIME_INTERVAL = 500;
+        public static int SIMULATION_STEPS = 10000;
 
         public static int ROW_HEIGHT = 30;
         public static int ROW_WIDTH = 80;
 
         public static int CONTROL_SOCKET_HEIGHT = 180;
-        public static int CONTROL_SOCKET_WIDTH = 325;
+        public static int CONTROL_SOCKET_WIDTH = 310;
 
 
         public static int ROW_HEIGHT_QUEUE = 25;

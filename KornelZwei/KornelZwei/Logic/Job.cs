@@ -11,7 +11,7 @@ namespace KornelZwei.Logic
 {
     public class Job
     {
-        private static int ID = 0;
+        public static int ID = 0;
 
         public List<MachineTime> DeviceTimeList
         {
@@ -43,7 +43,8 @@ namespace KornelZwei.Logic
         {
             get
             {
-                return Id + "[" + Start + "], ";
+                return Id + "[" + Start + "], " + Enum.GetName(typeof(FuelType), fuelType);
+                ;
             }
         }
         public int Start
@@ -76,6 +77,7 @@ namespace KornelZwei.Logic
         public Color color;
         public FuelType fuelType;
         public int fuelQty;
+        private static Random random = new Random();
 
         public override string ToString()
         {
@@ -168,7 +170,7 @@ namespace KornelZwei.Logic
             Job.ID++;
             Id = Job.ID;
             Name = "Zadanie " + Id;
-
+            
             //
             //lista czasów wykonywania zdania na maszynach
             DeviceTimeList = new List<MachineTime>();
@@ -177,9 +179,6 @@ namespace KornelZwei.Logic
 
             color = Color.FromArgb(((Id + 10) * 20) % 255, (Id * 30) % 255, (Id * 40) % 255);
 
-            //foreach (Socket socket in globalSocketList)
-            //{
-
             Dictionary<int, int> timeDict = new Dictionary<int, int>
             {
                 {10, Const.QTY_10_TIME},
@@ -187,7 +186,7 @@ namespace KornelZwei.Logic
                 {40, Const.QTY_40_TIME}
             };
 
-            //losowanieczasu tankowania
+            //losowanie tankowania
             fuelQty = DrawFuelQty();
             fuelType = DrawFuelType();
 
@@ -208,7 +207,6 @@ namespace KornelZwei.Logic
             qt.queue = queue;
 
             QueueTimeList.Add(qt);
-            //}
 
             Start = time;
             Stop = -1;
@@ -218,14 +216,14 @@ namespace KornelZwei.Logic
         {
             int probSum = Const.PB98_PROB + Const.PB95_PROB + Const.ON_PROB;
 
-            Random random = new Random();
+            
             int rand = random.Next(0, probSum);
 
             if (rand <= Const.PB98_PROB)
                 return FuelType.PB98;
             else if (rand > Const.PB98_PROB && rand <= Const.PB98_PROB + Const.PB95_PROB)
-                return FuelType.Pb95;
-            else //if (rand > Const.PB98_PROB + Const.PB95_PROB && rand <= probSum)
+                return FuelType.PB95;
+            else 
                 return FuelType.ON;
         }
 
@@ -233,14 +231,14 @@ namespace KornelZwei.Logic
         {
             int probSum = Const.QTY_10_PROB + Const.QTY_20_PROB + Const.QTY_40_PROB;
 
-            Random random = new Random();
+            
             int rand = random.Next(0, probSum);
 
             if (rand <= Const.QTY_10_PROB)
                 return 10;
             else if (rand > Const.QTY_10_PROB && rand <= Const.QTY_10_PROB + Const.QTY_20_PROB)
                 return 20;
-            else //if (rand > Const.PB98_PROB + Const.PB95_PROB && rand <= probSum)
+            else
                 return 40;
         }
     }
