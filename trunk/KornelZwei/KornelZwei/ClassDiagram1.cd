@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KornelZwei.Logic.DeviceEmptyEvent">
+    <Position X="7" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Logic\Events\DeviceEmptyEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.PutToQueueEvent">
+    <Position X="7" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\Events\PutToQueueEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.DeviceFinishedEvent">
+    <Position X="11.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\Events\DeviceFinishedEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.Event">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\Events\Event.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.GetFromQueueEvent">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\Events\GetFromQueueEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.JobGenerationEvent">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\Events\JobGenerationEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.Device">
+    <Position X="6.25" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAECAAAAAhAAAAAAABAAYEAAAAAABA=</HashCode>
+      <FileName>Logic\Device.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.Socket">
+    <Position X="8" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQASCABAAAAAAAAEAABAAIAAAAACAABAIAAIAAAAZEA=</HashCode>
+      <FileName>Logic\Socket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.Job">
+    <Position X="9.75" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACCCAAAAIKAIgAAEAAgAAAQAAVBQAACAJAQAACAEAAA=</HashCode>
+      <FileName>Logic\Job.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.MachineTime" Collapsed="true">
+    <Position X="10" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAgAAQAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\MachineTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.Queue">
+    <Position X="13.75" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAEgABEAAAAIAQgAAAAAABIAAAAAAAAAAg=</HashCode>
+      <FileName>Logic\Queue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.QueueFifo">
+    <Position X="11.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Logic\QueueFifo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.QueueSize" Collapsed="true">
+    <Position X="13.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAACAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\QueueSize.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.QueueTime" Collapsed="true">
+    <Position X="10" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAABAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\QueueTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.Scheduler">
+    <Position X="4.5" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AWCCFgANmAAAlABAAABwoyBAAgAIgAyUBIECECAAQAA=</HashCode>
+      <FileName>Logic\Scheduler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KornelZwei.Logic.MyMath.MathExtentions" Collapsed="true">
+    <Position X="11.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Logic\MathExtentions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="KornelZwei.Logic.FuelType" Collapsed="true">
+    <Position X="12.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\FuelType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

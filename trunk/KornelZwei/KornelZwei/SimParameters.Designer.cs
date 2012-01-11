@@ -572,7 +572,7 @@
             this.groupBox5.Location = new System.Drawing.Point(12, 166);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(309, 119);
-            this.groupBox5.TabIndex = 11;
+            this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Pozostałe parametry";
             // 
@@ -581,14 +581,14 @@
             this.tbQueueSize.Location = new System.Drawing.Point(181, 82);
             this.tbQueueSize.Name = "tbQueueSize";
             this.tbQueueSize.Size = new System.Drawing.Size(65, 20);
-            this.tbQueueSize.TabIndex = 15;
+            this.tbQueueSize.TabIndex = 2;
             // 
             // tbDeviceQty
             // 
             this.tbDeviceQty.Location = new System.Drawing.Point(181, 56);
             this.tbDeviceQty.Name = "tbDeviceQty";
             this.tbDeviceQty.Size = new System.Drawing.Size(65, 20);
-            this.tbDeviceQty.TabIndex = 14;
+            this.tbDeviceQty.TabIndex = 1;
             // 
             // label46
             // 
@@ -640,7 +640,7 @@
             this.tbCarFreq.Location = new System.Drawing.Point(181, 30);
             this.tbCarFreq.Name = "tbCarFreq";
             this.tbCarFreq.Size = new System.Drawing.Size(65, 20);
-            this.tbCarFreq.TabIndex = 11;
+            this.tbCarFreq.TabIndex = 0;
             // 
             // label45
             // 
@@ -666,7 +666,7 @@
             this.btnShowForm.Location = new System.Drawing.Point(378, 238);
             this.btnShowForm.Name = "btnShowForm";
             this.btnShowForm.Size = new System.Drawing.Size(121, 23);
-            this.btnShowForm.TabIndex = 12;
+            this.btnShowForm.TabIndex = 1;
             this.btnShowForm.Text = "Pokaż formularz";
             this.btnShowForm.UseVisualStyleBackColor = true;
             this.btnShowForm.Click += new System.EventHandler(this.btnShowForm_Click);
