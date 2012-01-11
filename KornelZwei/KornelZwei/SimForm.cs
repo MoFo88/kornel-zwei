@@ -397,6 +397,7 @@ namespace KornelZwei
         {
             try
             {
+                button1.Enabled = false;
                 scheduler.Reset();
                 if (excel1 != null)
                 {
@@ -451,6 +452,10 @@ namespace KornelZwei
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                button1.Enabled = true;
             }
         }
     }

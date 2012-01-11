@@ -33,6 +33,8 @@ namespace KornelZwei.Logic
 
         public SimForm form;
 
+        private static DiscreteUniformDistribution uniformDistr = new DiscreteUniformDistribution(0, 60);
+
         public void AddEvent(Event ev)
         {
             eventList.Add(ev);
@@ -40,7 +42,7 @@ namespace KornelZwei.Logic
 
         public bool CheckIfGenerateJob(int prob)
         {
-            DiscreteUniformDistribution uniformDistr = new DiscreteUniformDistribution(0, 60);
+            
             int nextRandom = uniformDistr.NextInt32();
 
             if (nextRandom < prob)
@@ -281,6 +283,7 @@ namespace KornelZwei.Logic
             killedJobsList = new List<Job>();
             jobList = new List<Job>();
             eventList = new List<Event>();
+            uniformDistr = new DiscreteUniformDistribution(0, 60);
             Job.ID = 0;
             //AddSocket();
 
