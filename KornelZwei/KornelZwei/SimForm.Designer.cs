@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimForm));
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.panelSockets = new System.Windows.Forms.Panel();
             this.btnStart = new System.Windows.Forms.Button();
@@ -162,7 +163,7 @@
             this.groupBox2.Location = new System.Drawing.Point(130, 425);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(212, 70);
-            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Symulacja";
             // 
@@ -171,7 +172,7 @@
             this.button1.Location = new System.Drawing.Point(88, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 23);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 1;
             this.button1.Text = "Rozpocznij symulację";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -355,6 +356,7 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panelSockets);
             this.Controls.Add(this.rtbLog);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SimForm";
             this.Text = "SimForm";
             this.Load += new System.EventHandler(this.SimForm_Load);
