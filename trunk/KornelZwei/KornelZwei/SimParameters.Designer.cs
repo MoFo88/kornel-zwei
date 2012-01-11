@@ -46,6 +46,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tb10QtyTime = new System.Windows.Forms.TextBox();
             this.tb10Qty = new System.Windows.Forms.TextBox();
             this.tb40QtyTime = new System.Windows.Forms.TextBox();
@@ -53,6 +55,7 @@
             this.tb20QtyTime = new System.Windows.Forms.TextBox();
             this.tb20Qty = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -86,9 +89,6 @@
             this.label45 = new System.Windows.Forms.Label();
             this.btnUpdateParam = new System.Windows.Forms.Button();
             this.btnShowForm = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -278,6 +278,26 @@
             this.label32.TabIndex = 9;
             this.label32.Text = "Czas tank.";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(25, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "10 l";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(25, 67);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(24, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "20 l";
+            // 
             // tb10QtyTime
             // 
             this.tb10QtyTime.Location = new System.Drawing.Point(137, 38);
@@ -328,6 +348,15 @@
             this.label35.Size = new System.Drawing.Size(23, 13);
             this.label35.TabIndex = 4;
             this.label35.Text = "min";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(25, 93);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(24, 13);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "40 l";
             // 
             // label34
             // 
@@ -566,18 +595,18 @@
             this.label46.AutoSize = true;
             this.label46.Location = new System.Drawing.Point(17, 82);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(109, 13);
+            this.label46.Size = new System.Drawing.Size(118, 13);
             this.label46.TabIndex = 13;
-            this.label46.Text = "Ilość miejsc w kolejce";
+            this.label46.Text = "Liczba miejsc w kolejce";
             // 
             // label41
             // 
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(17, 56);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(137, 13);
+            this.label41.Size = new System.Drawing.Size(146, 13);
             this.label41.TabIndex = 13;
-            this.label41.Text = "Ilość stanowisk tankowania";
+            this.label41.Text = "Liczba stanowisk tankowania";
             // 
             // label42
             // 
@@ -641,35 +670,6 @@
             this.btnShowForm.Text = "Pokaż formularz";
             this.btnShowForm.UseVisualStyleBackColor = true;
             this.btnShowForm.Click += new System.EventHandler(this.btnShowForm_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(25, 93);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(24, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "40 l";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(25, 67);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "20 l";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(25, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "10 l";
             // 
             // SimParameters
             // 
